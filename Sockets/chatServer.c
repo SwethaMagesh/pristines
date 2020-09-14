@@ -42,10 +42,10 @@ int main() {
   char BUFFER[Buffer_size];
   while (1) {
     read(clientfd, BUFFER, Buffer_size);
-    printf("\n Client: %s", BUFFER);
+    printf("Client: %s", BUFFER);
 
     bzero(BUFFER, Buffer_size);
-    printf("\n Server : Type your response....");
+    printf("Server : Type your response....");
     fgets(BUFFER, Buffer_size, stdin);
     if (strncmp(BUFFER, "exit",4) == 0) {
       break;

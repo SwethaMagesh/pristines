@@ -36,7 +36,7 @@ int main() {
   char BUFFER[Buffer_size];
   while (1) {
     bzero(BUFFER, Buffer_size);
-    printf("\n Client : Type your response.... ");
+    printf("Client : Type your response.... ");
     fgets(BUFFER, Buffer_size, stdin);
     if (strncmp(BUFFER, "exit",4) == 0) {
       break;
@@ -51,12 +51,12 @@ int main() {
       if (rval < 0) {
         perror("Cannot read from server");
       } else {
-        printf("\n Server : %s", BUFFER);
+        printf(" Server : %s", BUFFER);
       }
     
 
   }
-  printf("Server: BYE.. Nice speaking with you!");
+  printf("Server: BYE.. Nice speaking with you!\n");
   close(socketfd);
 
   return 0;
