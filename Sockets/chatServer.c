@@ -43,14 +43,19 @@ int main() {
   while (1) {
     read(clientfd, BUFFER, Buffer_size);
     printf("Client: %s", BUFFER);
+    if(strncmp(BUFFER,"exit",4)==0){
+	    break;
+
+    }
 
     bzero(BUFFER, Buffer_size);
     printf("Server : Type your response....");
     fgets(BUFFER, Buffer_size, stdin);
+    int wval = write(clientfd, BUFFER, Buffer_size);
     if (strncmp(BUFFER, "exit",4) == 0) {
       break;
     }
-    int wval = write(clientfd, BUFFER, Buffer_size);
+    
     if (wval < 0) {
       perror("Write unsuccessful");
     }
