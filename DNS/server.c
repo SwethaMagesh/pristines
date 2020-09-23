@@ -39,28 +39,39 @@ int main() {
    printf("\n Trying to receive from client ..");
 
     while (1) {
+	     bzero(BUFFER, Buffer_size);
+
 	    int rval;
  rval=recvfrom(socketfd,BUFFER, Buffer_size,0, (struct sockaddr * ) & client_addr, & clientlen);
-  
-    printf("Client: %s", BUFFER);
     if(strncmp(BUFFER,"exit",4)==0){
 	    break;
-
     }
+			
+    printf("Client wants to know the IP for  %s", BUFFER);
+    char request[100],response[100];
+    request="";
+    response="";
+    puts(request);
+    puts(response);
 
-    bzero(BUFFER, Buffer_size);
-    printf("Server : Type your response....");
-    fgets(BUFFER, Buffer_size, stdin);
-    int wval = sendto(socketfd, BUFFER, Buffer_size,0,(struct sockaddr*)&client_addr,sizeof(client_addr));
-    if (strncmp(BUFFER, "exit",4) == 0) {
-      break;
-    }
-    
+     FILE* fp=fopen("dnsMap","r");
+    while(!feof(fp)){
+	char temp[100];
+	fgets(fp,temp);
+	if(strcmp(temp,request)==0){
+		fgets(fp,response);
+	        printf("%s",response);	
+	}
+
+
+    } 
+     int wval = sendto(socketfd, response, strlen(response),0,(struct sockaddr*)&client_addr,sizeof(client_addr));
+        
     if (wval < 0) {
       perror("Write unsuccessful");
     }
   }
-  printf("Client: BYE");
+  printf("Client: BYE\n");
   close(socketfd);
 
   return 0;
