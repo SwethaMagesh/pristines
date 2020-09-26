@@ -30,7 +30,7 @@ int main() {
   char BUFFER[Buffer_size];
   while (1) {
     bzero(BUFFER, Buffer_size);
-    printf("\nEnter hostname (cannonical address), enter exit to stop\n ");
+    printf("\nEnter hostname (cannonical address), enter exit to stop\n");
     fgets(BUFFER, Buffer_size, stdin);
 int wval = sendto(socketfd, BUFFER, Buffer_size,0,(struct sockaddr*)&server_addr,sizeof(server_addr));
     if (strncmp(BUFFER, "exit",4) == 0) {

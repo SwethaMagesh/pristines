@@ -33,11 +33,11 @@ int main() {
     perror("\nBinding error");
     exit(1);
   }
-  printf("\n Bind successful\n");
+  printf("\n Bind successful");
   struct sockaddr_in client_addr;
   socklen_t clientlen = sizeof(client_addr);
   char BUFFER[Buffer_size];
-  printf("\n Trying to receive from client ..\n");
+  printf("\n Trying to receive from client ..");
   fflush(stdout);
   while (1) {
     bzero(BUFFER, Buffer_size);
@@ -62,6 +62,7 @@ int main() {
       if (strncmp(temp, request,strlen(temp)) == 0) {
         flag = 1;
         printf("\n Found the IP as %s", response);
+	break;
       }
 
     }
@@ -69,7 +70,7 @@ int main() {
 	printf("\n Not found");
       strcpy(response, "Not found");
     }
-    printf("\n server is sending this mesg to client %s",response);
+    //printf("\n server is sending this mesg to client %s",response);
     strcpy(BUFFER,response);
     int wval = sendto(socketfd, BUFFER, Buffer_size, 0, (struct sockaddr * ) & client_addr, sizeof(client_addr));
 
