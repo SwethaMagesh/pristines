@@ -1,3 +1,7 @@
-# pristines
-For codefundo 2019
-This is my networks lab repo!!!!
+# Pristines
+
+This is my networks lab repository for Semester 5!!!!
+
+ - Socket programming
+ - Commands for windows and linux
+ - NS2 simulator
